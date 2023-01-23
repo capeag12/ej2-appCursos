@@ -1,0 +1,7 @@
+{
+  "name": "ej2-appcursos",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
