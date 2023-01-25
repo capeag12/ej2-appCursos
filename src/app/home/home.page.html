@@ -16,23 +16,24 @@
               <ion-card-title>Añadir</ion-card-title>
             </ion-card-header>
             <ion-card-content>
-              <form>
+              <form [formGroup]="formAdd">
                 <ion-row>
                   <ion-col size-md="8" size-xs="12">
                     <ion-item>
                       <ion-label position="floating">Nombre curso:</ion-label>
-                      <ion-input placeholder="Curso" ></ion-input>
+                      <ion-input placeholder="Curso" formControlName="nombre" ></ion-input>
+                      <ion-note *ngIf="this.nombreAsignatura.valid==false && this.nombreAsignatura.dirty" slot="error">Este nombre es invalido</ion-note>
                     </ion-item>
                   </ion-col>
                   <ion-col size-md="2" size-xs="6">
                     <ion-item>
                       <ion-label position="floating">Nota:</ion-label>
-                      <ion-input placeholder="Nota" inputmode="decimal"></ion-input>
+                      <ion-input placeholder="Nota" type="number" formControlName="puntuacion"></ion-input>
                     </ion-item>
                   </ion-col>
                   <ion-col size-md="2" size-xs="6">
                     <ion-fab  horizontal="end" vertical="center">
-                      <ion-fab-button >
+                      <ion-fab-button [disabled]="!formAdd.valid" >
                         <ion-icon name="add"></ion-icon>
                       </ion-fab-button>
                     </ion-fab>
