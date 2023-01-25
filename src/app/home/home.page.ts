@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Clase } from '../modelo/clase';
+import { ServicioService } from '../modelo/servicio.service';
 
 @Component({
   selector: 'app-home',
@@ -6,7 +8,9 @@ import { Component } from '@angular/core';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-
-  constructor() {}
+  listaClases:Clase[] = []
+  constructor(private servicio:ServicioService) {
+    servicio.getClasesObservable().subscribe(lista => this.listaClases = lista)
+  }
 
 }
