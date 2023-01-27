@@ -8,10 +8,10 @@
 
 <ion-content  >
   <ion-grid>
-      <ion-row>
+      <ion-row [hidden]="oculto">
         <ion-col size-md="1" size-xs="0"></ion-col>
         <ion-col size-md="10" size-xs="12">
-          <ion-card>
+          <ion-card >
             <ion-card-header>
               <ion-card-title>Añadir</ion-card-title>
             </ion-card-header>
@@ -33,7 +33,7 @@
                   </ion-col>
                   <ion-col size-md="2" size-xs="6">
                     <ion-fab  horizontal="end" vertical="center">
-                      <ion-fab-button [disabled]="!formAdd.valid" >
+                      <ion-fab-button [disabled]="!formAdd.valid" (click)="addClase()">
                         <ion-icon name="add"></ion-icon>
                       </ion-fab-button>
                     </ion-fab>
@@ -70,8 +70,10 @@
     
   </ion-grid>
   <ion-fab slot="fixed" vertical="bottom" horizontal="end" id="btnAdd">
-    <ion-fab-button>
-      <ion-icon name="add"></ion-icon>
+    <ion-fab-button (click)="ocultarODesocultar()">
+
+      <ion-icon *ngIf="oculto==true" name="add"></ion-icon>
+      <ion-icon *ngIf="oculto==false" name="remove"></ion-icon>
     </ion-fab-button>
   </ion-fab>
 </ion-content>

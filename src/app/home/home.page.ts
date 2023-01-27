@@ -13,6 +13,7 @@ export class HomePage {
   formAdd: FormGroup;
   nombreAsignatura:FormControl
   puntuación:FormControl
+  oculto:boolean=false
 
 
   constructor(private servicio:ServicioService) {
@@ -21,6 +22,16 @@ export class HomePage {
     this.puntuación = new FormControl("",[Validators.required])
     this.formAdd = new FormGroup({nombre:this.nombreAsignatura, puntuacion:this.puntuación})
     
+  }
+
+  addClase(){
+    let clase:Clase = new Clase(this.nombreAsignatura.value, this.puntuación.value)
+    this.servicio.addClase(clase)
+    this.formAdd.reset()
+  }
+
+  ocultarODesocultar(){
+    this.oculto = !this.oculto
   }
 
 }

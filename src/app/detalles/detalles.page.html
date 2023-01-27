@@ -5,9 +5,17 @@
         <h1>{{clase.Nombre}}</h1>
         <h2>Puntuación:{{clase.Puntuacion}}</h2>
       </ion-col>
+      <ion-col size-md="6" size-xs="12">
+        <ion-img src="../../assets/img/noimg.png"></ion-img>
+      </ion-col>
     </ion-row>
-    <ion-row>
+    
       
-    </ion-row>
+    
   </ion-grid>
+  <ion-fab slot="fixed" vertical="bottom" horizontal="end" id="btnAdd">
+    <ion-fab-button (click)="eliminar()"  >
+      <ion-icon name="remove"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>
