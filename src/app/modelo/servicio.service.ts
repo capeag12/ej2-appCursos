@@ -4,6 +4,7 @@ import { Clase } from './clase';
 import { Filesystem, Directory, Encoding } from '@capacitor/filesystem';
 import { json } from 'express';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -15,7 +16,7 @@ export class ServicioService {
     this.clases = []
     Filesystem.readFile({
       path: 'text.json',
-      directory: Directory.Documents,
+      directory: Directory.Data,
       encoding: Encoding.UTF8,
     }).then((result) => {
       console.log(result)
@@ -28,6 +29,7 @@ export class ServicioService {
         this.addClase(new Clase(clase.nombre, clase.puntuacion))
         
       }
+      console.log(this.clases)
       
     }).catch((err) => {
       console.log(err)
@@ -43,10 +45,15 @@ export class ServicioService {
     return this.clases[index]
    }
 
+
    addClase(clase:Clase){
     this.clases.push(clase)
     this.clasesSubject.next(this.clases)
-    Filesystem.writeFile({path:'text.json', data:JSON.stringify(this.clases), directory:Directory.Documents,encoding:Encoding.UTF8})
+    this.guardarClases()
+   }
+
+   guardarClases(){
+    Filesystem.writeFile({path:'text.json', data:JSON.stringify(this.clases), directory:Directory.Data,encoding:Encoding.UTF8})
     .then((result) => {
     }).catch((err) => {
       console.log(err)
@@ -56,12 +63,10 @@ export class ServicioService {
   eliminarClase(index:number){
     this.clases.splice(index,1)
     this.clasesSubject.next(this.clases)
-    Filesystem.writeFile({path:'text.json', data:JSON.stringify(this.clases), directory:Directory.Documents,encoding:Encoding.UTF8})
-    .then((result) => {
-    }).catch((err) => {
-      console.log(err)
-    });
+    this.guardarClases()
   }
+
+  
 
 
 }

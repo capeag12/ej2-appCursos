@@ -5,6 +5,7 @@ export class Clase {
     constructor(nombre:string, puntuacion:number) {
         this.nombre=nombre
         this.puntuacion=puntuacion
+        
     }
 
     
@@ -16,6 +17,11 @@ export class Clase {
     public get Puntuacion() : number {
         return this.puntuacion;
     }
+
+    
+   
+    
+    
     
     
 }
